@@ -1,1 +1,1 @@
-# SimulatingDPs
+# Simulating Diffraction Patterns
