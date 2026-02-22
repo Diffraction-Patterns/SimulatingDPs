@@ -19,6 +19,8 @@ class CrystalParameters:
     self._validate_parameters()
 
   def _validate_parameters(self) -> None:
-    for name, value in vars(self).items():
+    numeric_parameters = ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
+    for name in numeric_parameters:
+      value = getattr(self, name)
       if value <= 0.0:
         raise ValueError(f'{name} must be greater than 0.')
