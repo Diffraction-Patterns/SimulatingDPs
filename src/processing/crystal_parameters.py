@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 @dataclass
-class CrysParams:
+class CrystalParameters:
   a: float
   b: float
   c: float
