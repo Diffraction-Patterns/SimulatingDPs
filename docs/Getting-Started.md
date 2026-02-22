@@ -63,3 +63,10 @@ pip install -e .
 # In the root directory, run the command:
 python -m simulation
 ```
+
+## Developing
+To maintain a modular and clean project, development should take place in separate packages (if possible).
+
+To complete a new Python package:
+1. Create a new folder within the _src_ directory.
+2. Create a new ```python __init__.py ``` file to denote the directory as a Python package. 
