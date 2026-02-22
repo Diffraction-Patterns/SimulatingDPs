@@ -12,5 +12,12 @@ python -m simulation
 
 ## Running tests
 ```bash
+# All tests (test files must start with test*)
 python -m nose2
+
+# Run individual test
+python -m unittest <Test file path>
+
+# Example
+python -m unittest .\src\tests\test_plane_eqs.py   
 ```
