@@ -13,6 +13,7 @@ def prompt_crystal_input() -> CrystalParameters:
   '''
   params = ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
   rp_space_key = 'reciprocal_space'
+  print('| === Crystal Parameters ===|')
   print('Type "exit" to quit') 
 
   while True:
@@ -63,4 +64,26 @@ def prompt_zone_axis_direction_input() -> ZoneAxis:
     ZoneAxis - An object representing the zone axis direction
   '''
   params = ['x', 'y', 'z']
-  return ZoneAxis(0, 0, 0)
+  print('Type "exit" to quit') 
+
+  while True:
+    value_inputs = {}
+  
+    for idx, p in enumerate(params, start=1):
+      while True:
+        raw_input = input(f'{idx}. Enter value for [{p}]: ').strip()
+
+        if raw_input.lower() == 'exit':
+          print("Exiting parameter input...")
+          return None
+        
+        try:
+          value_inputs[p] = int(raw_input)
+          break
+        except ValueError:
+          print('Please enter a valid number.\n')
+
+    try:
+      return ZoneAxis(**value_inputs)
+    except ValueError as e:
+      print(f'Error with parameter: {e}')
