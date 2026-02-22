@@ -33,11 +33,15 @@ def reciprocal_metric_tensor (c: CrystalParameters) -> np.array:
   Returns:
     Matrix of reciprocal metric tensor
   '''
+  r1c1 = c.b**2 * c.c**2 * sin(c.alpha)**2
+  r1c2 = c.a*c.b*c.c * f_constant(c.alpha, c.beta, c.gamma)
+  r1c3 = c.a*(c.b**2)*c.c * f_constant(c.gamma, c.alpha, c.beta)
+
   mt_matrix = np.array()
   return mt_matrix
 
-def f_constant (alpha: float, beta: float, gamma: float) -> float:
-  return (cos(alpha) * cos(beta)) - cos(gamma)
+def f_constant (x: float, y: float, z: float) -> float:
+  return (cos(x) * cos(y)) - cos(z)
 
 def unit_cell_volume_sq (c: CrystalParameters) -> float:
   '''
