@@ -11,14 +11,15 @@ Return:
 '''
 def prompt_input() -> CrystalParameters:
   params = ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
+  print('Type "exit" to quit') 
 
   while True:
     value_inputs = {}
-    print('Type "exit" to quit') 
+    param_i = 1
+  
     for p in params:
       while True:
-        print(f'Enter value for [{p}]')
-        raw_input = input().strip()
+        raw_input = input(f'{param_i}. Enter value for [{p}]: ').strip()
 
         if (raw_input.lower() == 'exit'):
           print("Exiting parameter input...")
@@ -26,6 +27,7 @@ def prompt_input() -> CrystalParameters:
         
         try:
           value_inputs[p] = float(raw_input)
+          param_i += 1
           break
         except ValueError:
           print('Please enter a valid number.\n')
