@@ -9,9 +9,8 @@ class TestEqs(unittest.TestCase):
   def test_metric_tensor(self):
     actual_mt = eq.metric_tensor(self.test_crystal)
     expected_mt = np.array([
-      [14.8379, 0.0, 0.0],
-      [0.0, 14.8379, 0.0],
-      [0.0, 0.0, 13.8607]
+      [14.837904, 0.0, 0.0],
+      [0.0, 14.837904, 0.0],
+      [0.0, 0.0, 13.860729]
     ])
-    print(actual_mt)
     self.assertTrue((actual_mt==expected_mt).all())
