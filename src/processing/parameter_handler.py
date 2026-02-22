@@ -1,8 +1,9 @@
 from models.crystal_parameters import CrystalParameters
+from models.zone_axis import ZoneAxis 
 
 def prompt_crystal_input() -> CrystalParameters:
   '''
-  Handles user inputs for parameters.
+  Handles user inputs for crystal parameters.
 
   Prompts user for six floating point number parameter values:
   a, b, c, alpha, beta, and gamma
@@ -50,3 +51,16 @@ def prompt_crystal_input() -> CrystalParameters:
       return CrystalParameters(**value_inputs)
     except ValueError as e:
       print(f'Error with parameter: {e}')
+
+def prompt_zone_axis_direction_input() -> ZoneAxis:
+  '''
+  Handles user inputs for zone access direction.
+
+  Prompts user for three integer number parameter values:
+  x, y, z
+
+  Return: 
+    ZoneAxis - An object representing the zone axis direction
+  '''
+  params = ['x', 'y', 'z']
+  return ZoneAxis(0, 0, 0)
