@@ -10,4 +10,12 @@ class TestCrystalInput(TestCase):
         actual = prompt_zone_axis_direction()
         self.assertIsNone(actual)
 
-    
+    def test_valid_input(self, mocked_input):
+        mocked_input.side_effect = [
+            '1',  # x 
+            '2',  # y
+            '3'   # z
+            ]
+        actual = prompt_zone_axis_direction()
+        expected = ZoneAxis(1, 2, 3)
+        self.assertEqual(actual, expected)
