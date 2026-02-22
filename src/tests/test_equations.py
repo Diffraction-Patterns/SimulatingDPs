@@ -1,6 +1,6 @@
 from unittest import TestCase
 import numpy as np
-import equations.equations as eq
+import equations.lattice_eqs as eq
 from models.lattice_parameters import LatticeParameters
 
 class TestEqs(TestCase):
