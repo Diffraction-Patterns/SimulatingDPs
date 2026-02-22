@@ -1,13 +1,13 @@
 from unittest import mock
 from unittest import TestCase
-from processing.parameter_handler import prompt_crystal
-from models.crystal_parameters import CrystalParameters
+from processing.parameter_handler import prompt_lattice
+from models.lattice_parameters import LatticeParameters
 
 @mock.patch('processing.parameter_handler.input', create=True)
 class TestCrystalInput(TestCase):
     def test_exit(self, mocked_input):
         mocked_input.side_effect = ['3.287', 'Exit']
-        actual = prompt_crystal()
+        actual = prompt_lattice()
         self.assertIsNone(actual)
 
     def test_valid_input(self, mocked_input):
@@ -20,8 +20,8 @@ class TestCrystalInput(TestCase):
             '90.0', # gamma
             'n'
             ]
-        actual = prompt_crystal()
-        expected = CrystalParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
+        actual = prompt_lattice()
+        expected = LatticeParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
         self.assertEqual(actual, expected)
 
     def test_invalid_input(self, mocked_input):
@@ -37,6 +37,6 @@ class TestCrystalInput(TestCase):
             'bad recip', # invalid reciprocal space 
             'y' # valid reciprocal space
             ]
-        actual = prompt_crystal()
-        expected = CrystalParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0, True)
+        actual = prompt_lattice()
+        expected = LatticeParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0, True)
         self.assertEqual(actual, expected)

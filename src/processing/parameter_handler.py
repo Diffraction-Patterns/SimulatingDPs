@@ -1,7 +1,7 @@
-from models.crystal_parameters import CrystalParameters
+from models.lattice_parameters import LatticeParameters
 from models.zone_axis import ZoneAxis 
 
-def prompt_crystal() -> CrystalParameters:
+def prompt_lattice() -> LatticeParameters:
   '''
   Handles user inputs for crystal parameters.
 
@@ -9,11 +9,10 @@ def prompt_crystal() -> CrystalParameters:
   a, b, c, alpha, beta, and gamma
 
   Return: 
-    CrystalParameters An object populated with inputted parameters
+    LatticeParameters An object populated with inputted parameters
   '''
   params = ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
   rp_space_key = 'reciprocal_space'
-  print('\n| === Crystal Parameters ===|')
   print('Type "exit" to quit') 
 
   while True:
@@ -49,7 +48,7 @@ def prompt_crystal() -> CrystalParameters:
         print('Please enter only [y]es or [n]o.')
 
     try:
-      return CrystalParameters(**value_inputs)
+      return LatticeParameters(**value_inputs)
     except ValueError as e:
       print(f'Error with parameter: {e}')
 
@@ -64,8 +63,6 @@ def prompt_zone_axis_direction() -> ZoneAxis:
     ZoneAxis - An object representing the zone axis direction
   '''
   params = ['x', 'y', 'z']
-  print('\n| === Zone Axis Direction ===|')
-
   while True:
     value_inputs = {}
   

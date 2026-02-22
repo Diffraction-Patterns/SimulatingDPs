@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 
 @dataclass
-class CrystalParameters:
+class LatticeParameters:
   '''
-  Data Class to hold parameters of a crystal
+  Data Class to hold parameters of a lattice of a crystal
   '''
   a: float
   b: float
