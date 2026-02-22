@@ -11,26 +11,40 @@ Return:
 '''
 def prompt_input() -> CrystalParameters:
   params = ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
+  rp_space_key = 'reciprocal_space'
   print('Type "exit" to quit') 
 
   while True:
     value_inputs = {}
-    param_i = 1
   
-    for p in params:
+    for idx, p in enumerate(params, start=1):
       while True:
-        raw_input = input(f'{param_i}. Enter value for [{p}]: ').strip()
+        raw_input = input(f'{idx}. Enter value for [{p}]: ').strip()
 
-        if (raw_input.lower() == 'exit'):
+        if raw_input.lower() == 'exit':
           print("Exiting parameter input...")
           return None
         
         try:
           value_inputs[p] = float(raw_input)
-          param_i += 1
           break
         except ValueError:
           print('Please enter a valid number.\n')
+
+    while True:
+      raw_input = input('Reciprocal space [y/n]: ').strip().lower() 
+
+      if raw_input == 'exit':
+        print("Exiting parameter input...")
+        return None
+      
+      if raw_input in ('y', 'n'):
+        if raw_input == 'y':
+          print('Set reciprocal space...')
+          value_inputs[rp_space_key] = True
+        break
+      else:
+        print('Please enter only [y]es or [n]o.')
 
     try:
       return CrystalParameters(**value_inputs)
