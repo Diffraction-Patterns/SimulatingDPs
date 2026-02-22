@@ -1,7 +1,7 @@
 from models.crystal_parameters import CrystalParameters
 from models.zone_axis import ZoneAxis 
 
-def prompt_crystal_input() -> CrystalParameters:
+def prompt_crystal() -> CrystalParameters:
   '''
   Handles user inputs for crystal parameters.
 
@@ -53,7 +53,7 @@ def prompt_crystal_input() -> CrystalParameters:
     except ValueError as e:
       print(f'Error with parameter: {e}')
 
-def prompt_zone_axis_direction_input() -> ZoneAxis:
+def prompt_zone_axis_direction() -> ZoneAxis:
   '''
   Handles user inputs for zone access direction.
 
