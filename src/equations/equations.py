@@ -33,10 +33,14 @@ def reciprocal_metric_tensor (c: CrystalParameters) -> np.array:
   Returns:
     Matrix of reciprocal metric tensor
   '''
-  r1c1 = c.b**2 * c.c**2 * sin(c.alpha)**2
-  r1c2 = c.a*c.b*c.c * f_constant(c.alpha, c.beta, c.gamma)
-  r1c3 = c.a*(c.b**2)*c.c * f_constant(c.gamma, c.alpha, c.beta)
+  r1c1 = (c.b**2) * (c.c**2) * (sin(c.alpha)**2)
+  r1c2 = c.a * c.b * c.c * f_constant(c.alpha, c.beta, c.gamma)
+  r1c3 = c.a * (c.b**2) * c.c * f_constant(c.gamma, c.alpha, c.beta)
 
+  r2c1 = c.a * c.b * (c.c**2) * f_constant(c.alpha, c.beta, c.gamma)
+  r2c2 = (c.a**2) * (c.c**2) * (sin(c.beta)**2)
+  r2c3 = (c.a**2) * c.b * c.c * f_constant(c.beta, c.gamma, c.alpha)
+  
   mt_matrix = np.array()
   return mt_matrix
 
