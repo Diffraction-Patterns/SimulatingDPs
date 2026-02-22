@@ -1,13 +1,13 @@
 from unittest import mock
 from unittest import TestCase
-from processing.parameter_handler import prompt_input
+from processing.parameter_handler import prompt_crystal_input
 from models.crystal_parameters import CrystalParameters
 
 @mock.patch('processing.parameter_handler.input', create=True)
 class TestInput(TestCase):
     def test_exit(self, mocked_input):
         mocked_input.side_effect = ['3.287', 'Exit']
-        actual = prompt_input()
+        actual = prompt_crystal_input()
         self.assertIsNone(actual)
 
     def test_valid_input(self, mocked_input):
@@ -20,7 +20,7 @@ class TestInput(TestCase):
             '90.0', # gamma
             'n'
             ]
-        actual = prompt_input()
+        actual = prompt_crystal_input()
         expected = CrystalParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
         self.assertEqual(actual, expected)
 
@@ -37,6 +37,6 @@ class TestInput(TestCase):
             'bad recip', # invalid reciprocal space 
             'y' # valid reciprocal space
             ]
-        actual = prompt_input()
+        actual = prompt_crystal_input()
         expected = CrystalParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0, True)
         self.assertEqual(actual, expected)

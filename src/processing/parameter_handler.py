@@ -1,15 +1,15 @@
 from models.crystal_parameters import CrystalParameters
 
-'''
-Handles user inputs for parameters.
+def prompt_crystal_input() -> CrystalParameters:
+  '''
+  Handles user inputs for parameters.
 
-Prompts user for six floating point number parameter values:
-a, b, c, alpha, beta, and gamma
+  Prompts user for six floating point number parameter values:
+  a, b, c, alpha, beta, and gamma
 
-Return: 
-  CrystalParameters An object populated with inputted parameters
-'''
-def prompt_input() -> CrystalParameters:
+  Return: 
+    CrystalParameters An object populated with inputted parameters
+  '''
   params = ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
   rp_space_key = 'reciprocal_space'
   print('Type "exit" to quit') 

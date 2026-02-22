@@ -1,6 +1,6 @@
 import shlex
 import sys
-from processing.parameter_handler import prompt_input
+from processing.parameter_handler import prompt_crystal_input
 
 def simTitle() -> None:
     print('|====== Diffraction Patterns Simulation ======|')
@@ -8,7 +8,7 @@ def simTitle() -> None:
 def main() -> int:
     simTitle()
     try:
-      crystal_params = prompt_input()
+      crystal_params = prompt_crystal_input()
       if crystal_params != None:
         print(vars(crystal_params))    
     except KeyboardInterrupt:
