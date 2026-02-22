@@ -8,6 +8,8 @@ def simTitle() -> None:
 def main() -> int:
     simTitle()
     crystal_params = prompt_input()
+    if crystal_params != None:
+      print(vars(crystal_params))        
     return 0
 
 if __name__ == '__main__':
