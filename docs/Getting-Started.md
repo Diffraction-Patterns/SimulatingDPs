@@ -32,6 +32,7 @@ source ./.venv/bin/activate
 # Deactivate by typing in the command line interface (CLI).
 deactivate
 ```
+*While developing, you should have the virtual environment active!
 
 ## Packages
 To ensure the project is set up with the correct dependencies, we will use a _requirements.txt_ file.
@@ -47,4 +48,18 @@ pip freeze > requirements.txt
 
 # Installation
 pip install -r requirements.txt
+```
+
+## Running the project
+To run the program, our entry point will be in the src\simulation directory (our Python package)
+
+```bash
+# Ensure your virtual env is active
+.venv\Scripts\activate
+
+# Run the command to install packages in editable mode
+pip install -e .
+
+# In the root directory, run the command:
+python -m simulation
 ```
