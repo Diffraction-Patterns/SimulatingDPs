@@ -12,6 +12,9 @@ class CrystalParameters:
   beta: float
   gamma: float
 
+  # denotes if reciprocal space should be used
+  reciprocal_space: bool = False
+
   def __post_init__(self):
     self._validate_parameters()
 
