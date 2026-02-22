@@ -1,13 +1,13 @@
 import shlex
 import sys
+from processing.parameter_handler import prompt_input
 
-def echo(phrase: str) -> None:
-   print(phrase)
+def simTitle() -> None:
+    print('|====== Diffraction Patterns Simulation ======|')
 
 def main() -> int:
-    """Echo the input arguments to standard output"""
-    phrase = shlex.join(sys.argv)
-    echo(phrase)
+    simTitle()
+    crystal_params = prompt_input()
     return 0
 
 if __name__ == '__main__':
