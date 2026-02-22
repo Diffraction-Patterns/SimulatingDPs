@@ -1,9 +1,9 @@
-import unittest
+from unittest import TestCase
 import numpy as np
 import equations.equations as eq
 from models.crystal_parameters import CrystalParameters
 
-class TestEqs(unittest.TestCase):
+class TestEqs(TestCase):
   test_crystal = CrystalParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
 
   def test_metric_tensor(self):
