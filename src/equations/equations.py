@@ -25,7 +25,7 @@ def metric_tensor (c: CrystalParameters) -> np.array:
 
   return np.array([[r1c1, r1c2, r1c3],
                   [r2c1, r2c2, r2c3],
-                  [r3c1, r3c2, r3c3]])
+                  [r3c1, r3c2, r3c3]], dtype=float)
 
 def reciprocal_metric_tensor (c: CrystalParameters) -> np.array:
   '''
@@ -47,7 +47,7 @@ def reciprocal_metric_tensor (c: CrystalParameters) -> np.array:
 
   mt_matrix = np.array([[r1c1, r1c2, r1c3],
                        [r2c1, r2c2, r2c3],
-                       [r3c1, r3c2, r3c3]])
+                       [r3c1, r3c2, r3c3]], dtype=float)
   
   scalar_v = 1.0/(unit_cell_volume_sq(c))
   return scalar_v*mt_matrix
