@@ -1,4 +1,4 @@
-from processing.crystal_parameters import CrystalParameters
+from models.crystal_parameters import CrystalParameters
 
 '''
 Handles user inputs for parameters.
@@ -7,7 +7,7 @@ Prompts user for six floating point number parameter values:
 a, b, c, alpha, beta, and gamma
 
 Return: 
-  CrysParams: An object populated with inputted parameters
+  CrystalParameters An object populated with inputted parameters
 '''
 def prompt_input() -> CrystalParameters:
   params = ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
