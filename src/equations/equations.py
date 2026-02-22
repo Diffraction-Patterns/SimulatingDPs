@@ -23,9 +23,10 @@ def metric_tensor (c: CrystalParameters) -> np.array:
   r3c2 = c.c * c.b * cos(radians(c.alpha))
   r3c3 = c.c**2
 
-  return np.array([[r1c1, r1c2, r1c3],
-                  [r2c1, r2c2, r2c3],
-                  [r3c1, r3c2, r3c3]], dtype=float)
+  return np.array([[round(r1c1, 8), round(r1c2, 8), round(r1c3, 8)],
+                  [round(r2c1, 8), round(r2c2, 8), round(r2c3, 8)],
+                  [round(r3c1, 8), round(r3c2, 8), round(r3c3, 8)]], 
+                  dtype=float)
 
 def reciprocal_metric_tensor (c: CrystalParameters) -> np.array:
   '''
@@ -45,15 +46,16 @@ def reciprocal_metric_tensor (c: CrystalParameters) -> np.array:
   r3c2 = (c.a**2) * c.b * c.c * f_constant(c.beta, c.gamma, c.alpha)
   r3c3 = (c.a**2) * (c.b**2) * (sin(radians(c.gamma))**2)
 
-  mt_matrix = np.array([[r1c1, r1c2, r1c3],
-                       [r2c1, r2c2, r2c3],
-                       [r3c1, r3c2, r3c3]], dtype=float)
+  mt_matrix = np.array([[round(r1c1, 8), round(r1c2, 8), round(r1c3, 8)],
+                        [round(r2c1, 8), round(r2c2, 8), round(r2c3, 8)],
+                        [round(r3c1, 8), round(r3c2, 8), round(r3c3, 8)]], 
+                        dtype=float)
   
   scalar_v = 1.0/(unit_cell_volume_sq(c))
   return scalar_v*mt_matrix
 
 def f_constant (x: float, y: float, z: float) -> float:
-  return (cos(radians(x)) * cos(radians(y))) - cos(radians(z))
+  return round((cos(radians(x)) * cos(radians(y))) - cos(radians(z)), 2)
 
 def unit_cell_volume_sq (c: CrystalParameters) -> float:
   '''
@@ -65,4 +67,4 @@ def unit_cell_volume_sq (c: CrystalParameters) -> float:
        - cos(radians(c.beta))**2 
        - cos(radians(c.gamma))**2
        + 2*cos(radians(c.alpha)) * cos(radians(c.beta)) * cos(radians(c.gamma)))
-  return a * b
+  return round(a * b, 8)
