@@ -1,5 +1,4 @@
 from models.lattice_parameters import LatticeParameters
-from dataclasses import asdict
 import numpy as np
 from math import cos, sin, radians
 
