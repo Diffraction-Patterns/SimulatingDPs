@@ -2,6 +2,9 @@ from dataclasses import dataclass
 
 @dataclass
 class CrystalParameters:
+  '''
+  Data Class to hold parameters of a crystal
+  '''
   a: float
   b: float
   c: float
