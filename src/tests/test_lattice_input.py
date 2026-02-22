@@ -1,9 +1,9 @@
 from unittest import mock
 from unittest import TestCase
-from processing.parameter_handler import prompt_lattice
+from processing.prompt_lattice import prompt_lattice
 from models.lattice_parameters import LatticeParameters
 
-@mock.patch('processing.parameter_handler.input', create=True)
+@mock.patch('processing.prompt_lattice.input', create=True)
 class TestCrystalInput(TestCase):
     def test_exit(self, mocked_input):
         mocked_input.side_effect = ['3.287', 'Exit']

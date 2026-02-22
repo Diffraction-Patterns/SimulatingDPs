@@ -1,6 +1,7 @@
 import shlex
 import sys
-from processing.parameter_handler import prompt_lattice, prompt_zone_axis_direction
+from processing.prompt_lattice import prompt_lattice
+from processing.prompt_zone_axis import prompt_zone_axis_direction
 
 def simTitle() -> None:
     print('|====== Diffraction Patterns Simulation ======|')
