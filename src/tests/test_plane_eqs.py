@@ -35,3 +35,16 @@ class TestPlaneEqs(TestCase):
     expected_2 = (-1, 1, 0)
     self.assertEqual(actual_1, expected_1)
     self.assertEqual(actual_2, expected_2)
+
+  def test_plane_angle(self):
+    '''
+    Test for calculating plane angle
+    '''
+    test_zone_axis = ZoneAxis(1, 1, 0)
+    test_lattice = Lattice(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
+    test_planes = eq.planes_identification(test_zone_axis)
+    h1, h2 = eq.two_shortest_planes(test_planes, test_lattice)
+    g_star = eq.reciprocal_metric_tensor(test_lattice)
+    actual = eq.plane_angles(h1, h2, g_star)
+    expected = 90.0
+    self.assertEqual(actual, expected)
