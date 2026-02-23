@@ -1,10 +1,10 @@
 from unittest import TestCase
 import numpy as np
 import equations.lattice_eqs as eq
-from models.lattice_parameters import LatticeParameters
+from models.lattice import Lattice
 
 class TestLatticeEqs(TestCase):
-  test_crystal = LatticeParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
+  test_crystal = Lattice(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
 
   def test_metric_tensor(self):
     '''

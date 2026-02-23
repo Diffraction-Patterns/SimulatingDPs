@@ -1,6 +1,6 @@
-from models.lattice_parameters import LatticeParameters
+from models.lattice import Lattice
 
-def prompt_lattice() -> LatticeParameters:
+def prompt_lattice() -> Lattice:
   '''
   Handles user inputs for crystal parameters.
 
@@ -8,7 +8,7 @@ def prompt_lattice() -> LatticeParameters:
   a, b, c, alpha, beta, and gamma
 
   Return: 
-    LatticeParameters An object populated with inputted parameters
+    Lattice An object populated with inputted parameters
   '''
   params = ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
   rp_space_key = 'reciprocal_space'
@@ -48,6 +48,6 @@ def prompt_lattice() -> LatticeParameters:
         print('Please enter only [y]es or [n]o.')
     '''
     try:
-      return LatticeParameters(**value_inputs)
+      return Lattice(**value_inputs)
     except ValueError as e:
       print(f'Error with parameter: {e}')

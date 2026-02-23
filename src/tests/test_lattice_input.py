@@ -1,7 +1,7 @@
 from unittest import mock
 from unittest import TestCase
 from processing.prompt_lattice import prompt_lattice
-from models.lattice_parameters import LatticeParameters
+from models.lattice import Lattice
 
 @mock.patch('processing.prompt_lattice.input', create=True)
 class TestCrystalInput(TestCase):
@@ -21,7 +21,7 @@ class TestCrystalInput(TestCase):
             'n'
             ]
         actual = prompt_lattice()
-        expected = LatticeParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
+        expected = Lattice(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
         self.assertEqual(actual, expected)
 
     def test_invalid_input(self, mocked_input):
@@ -37,5 +37,5 @@ class TestCrystalInput(TestCase):
             'bad recip', # invalid reciprocal space 
             ]
         actual = prompt_lattice()
-        expected = LatticeParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
+        expected = Lattice(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
         self.assertEqual(actual, expected)

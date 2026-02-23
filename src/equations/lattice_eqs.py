@@ -1,12 +1,12 @@
-from models.lattice_parameters import LatticeParameters
+from models.lattice import Lattice
 import numpy as np
 from math import cos, sin, radians
 
-def metric_tensor (c: LatticeParameters) -> np.array:
+def metric_tensor (c: Lattice) -> np.array:
   '''
   Equation to calculate the metric tensor (g_triclinic)
   Parameters:
-    LatticeParameters class
+    Lattice class
   Returns:
     Matrix of metric tensor calculations
   '''
@@ -27,7 +27,7 @@ def metric_tensor (c: LatticeParameters) -> np.array:
                   [round(r3c1, 8), round(r3c2, 8), round(r3c3, 8)]], 
                   dtype=float)
 
-def reciprocal_metric_tensor (c: LatticeParameters) -> np.array:
+def reciprocal_metric_tensor (c: Lattice) -> np.array:
   '''
   Equation to calculate the reciprocal metric tensor (g*_triclinic)
   Returns:
@@ -56,7 +56,7 @@ def reciprocal_metric_tensor (c: LatticeParameters) -> np.array:
 def f_constant (x: float, y: float, z: float) -> float:
   return round((cos(radians(x)) * cos(radians(y))) - cos(radians(z)), 2)
 
-def unit_cell_volume_sq (c: LatticeParameters) -> float:
+def unit_cell_volume_sq (c: Lattice) -> float:
   '''
   Equation to calculate the squared volume of a unit cell
   '''
