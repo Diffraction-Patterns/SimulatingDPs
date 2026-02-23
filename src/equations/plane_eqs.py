@@ -1,4 +1,5 @@
 import numpy as np
+import math
 from models.zone_axis import ZoneAxis
 from models.lattice import Lattice
 from equations.lattice_eqs import reciprocal_metric_tensor
@@ -48,3 +49,22 @@ def two_shortest_planes(planes: tuple[int, int, int], c: Lattice):
   
   ## should never be hit
   return sorted_planes[0], sorted_planes[1]
+
+def plane_angles(h1: tuple[int, int, int], h2: tuple[int, int, int], g_star: np.array) -> float:
+  '''
+  Calculates the angle between planes using the equation:
+    cos(theta)12 = h1 dot g* dot h2 / gh1 * gh2
+  Parameters:
+    h1 - plane 1
+    g_star - reciprocal metric tensor
+    h2 - plane 2
+  Returns:
+    plane angle (in degrees)
+  '''
+  nu = h1 @ g_star @ h2
+  de = plane_vector_length(h1, g_star) * plane_vector_length(h2, g_star)
+  cos_theta = nu / de
+
+  # safety for floating point precision
+  cos_theta = max(-1.0, min(1.0, cos_theta))
+  return math.degrees(math.acos(cos_theta))
