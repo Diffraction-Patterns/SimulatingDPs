@@ -2,6 +2,21 @@ from models.lattice import Lattice
 import numpy as np
 from math import cos, sin, radians
 
+def f_constant (x: float, y: float, z: float) -> float:
+  return round((cos(radians(x)) * cos(radians(y))) - cos(radians(z)), 2)
+
+def unit_cell_volume_sq (c: Lattice) -> float:
+  '''
+  Equation to calculate the squared volume of a unit cell
+  '''
+  a = (c.a**2) * (c.b**2) * (c.c**2)
+  b = (1 
+       - cos(radians(c.alpha))**2 
+       - cos(radians(c.beta))**2 
+       - cos(radians(c.gamma))**2
+       + 2*cos(radians(c.alpha)) * cos(radians(c.beta)) * cos(radians(c.gamma)))
+  return round(a * b, 8)
+
 def metric_tensor (c: Lattice) -> np.array:
   '''
   Equation to calculate the metric tensor (g_triclinic)
@@ -52,18 +67,3 @@ def reciprocal_metric_tensor (c: Lattice) -> np.array:
   
   scalar_v = 1.0/(unit_cell_volume_sq(c))
   return scalar_v*mt_matrix
-
-def f_constant (x: float, y: float, z: float) -> float:
-  return round((cos(radians(x)) * cos(radians(y))) - cos(radians(z)), 2)
-
-def unit_cell_volume_sq (c: Lattice) -> float:
-  '''
-  Equation to calculate the squared volume of a unit cell
-  '''
-  a = (c.a**2) * (c.b**2) * (c.c**2)
-  b = (1 
-       - cos(radians(c.alpha))**2 
-       - cos(radians(c.beta))**2 
-       - cos(radians(c.gamma))**2
-       + 2*cos(radians(c.alpha)) * cos(radians(c.beta)) * cos(radians(c.gamma)))
-  return round(a * b, 8)
