@@ -22,3 +22,16 @@ class TestPlaneEqs(TestCase):
     actual = eq.plane_vector_length(test_plane, eq.reciprocal_metric_tensor(test_lattice))
     expected = 0.268601
     np.testing.assert_allclose(actual, expected, rtol=1e-5)
+
+  def test_two_shortest(self):
+    '''
+    Test for two shortest planes lengths
+    '''
+    test_zone_axis = ZoneAxis(1, 1, 0)
+    test_lattice = Lattice(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
+    test_planes = eq.planes_identification(test_zone_axis)
+    actual_1, actual_2 = eq.two_shortest_planes(test_planes, test_lattice)
+    expected_1 = (0, 0, -1)
+    expected_2 = (-1, 1, 0)
+    self.assertEqual(actual_1, expected_1)
+    self.assertEqual(actual_2, expected_2)
