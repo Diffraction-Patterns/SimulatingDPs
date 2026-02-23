@@ -1,5 +1,6 @@
 import numpy as np
 from models.zone_axis import ZoneAxis
+from models.lattice import Lattice
 from equations.lattice_eqs import reciprocal_metric_tensor
 
 def planes_identification(zad: ZoneAxis, maxRange: int = 10) -> list[tuple[int, int, int]]:
@@ -32,3 +33,18 @@ def plane_vector_length(hkl: tuple[int, int, int], g_star: np.array) -> float:
   '''
   plane = np.asarray(hkl, dtype=float)
   return float(np.sqrt(plane @ g_star @ plane)) # @ represents dot product (Python 3.5+)
+
+def two_shortest_planes(planes: tuple[int, int, int], c: Lattice):
+  g_star = reciprocal_metric_tensor(c)
+  sorted_planes = sorted(planes, key=lambda hkl: plane_vector_length(hkl, g_star))
+  
+  # Filter out duplicate planes (i.e. (0,0,1) and (0,0,-1))
+  pl1 = sorted_planes[0]
+  abs_pl1 = tuple(abs(x) for x in pl1)
+
+  for p in sorted_planes[1:]:
+    if tuple(abs(x) for x in p) != abs_pl1:
+      return pl1, p
+  
+  ## should never be hit
+  return sorted_planes[0], sorted_planes[1]
