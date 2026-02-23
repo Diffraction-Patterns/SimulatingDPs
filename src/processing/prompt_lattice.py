@@ -31,6 +31,7 @@ def prompt_lattice() -> LatticeParameters:
         except ValueError:
           print('Please enter a valid number.\n')
 
+    ''' (NOT IN USE. may be used for future purposes)
     while True:
       raw_input = input('Reciprocal space [y/n]: ').strip().lower() 
 
@@ -45,7 +46,7 @@ def prompt_lattice() -> LatticeParameters:
         break
       else:
         print('Please enter only [y]es or [n]o.')
-
+    '''
     try:
       return LatticeParameters(**value_inputs)
     except ValueError as e:
