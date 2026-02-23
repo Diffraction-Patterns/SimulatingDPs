@@ -35,8 +35,7 @@ class TestCrystalInput(TestCase):
             'bad gam', # invalid gamma
             '90.0', # valid gamma
             'bad recip', # invalid reciprocal space 
-            'y' # valid reciprocal space
             ]
         actual = prompt_lattice()
-        expected = LatticeParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0, True)
+        expected = LatticeParameters(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
         self.assertEqual(actual, expected)
