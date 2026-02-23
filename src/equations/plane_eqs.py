@@ -7,7 +7,7 @@ from equations.lattice_eqs import reciprocal_metric_tensor
 def planes_identification(zad: ZoneAxis, maxRange: int = 10) -> list[tuple[int, int, int]]:
   '''
   Computes the zone axis planes using the equation:
-    hx + ky +Lz = 0
+    hx + ky + Lz = 0
   Return:
     List of tuples representing points
   '''
@@ -50,20 +50,20 @@ def two_shortest_planes(planes: tuple[int, int, int], c: Lattice):
   ## should never be hit
   return sorted_planes[0], sorted_planes[1]
 
-def plane_angles(h1: tuple[int, int, int], h2: tuple[int, int, int], g_star: np.array) -> float:
+def plane_angles(hkl1: tuple[int, int, int], hkl2: tuple[int, int, int], g_star: np.array) -> float:
   '''
   Calculates the angle between planes using the equation:
-    cos(theta)12 = h1 dot g* dot h2 / gh1 * gh2
+    cos(theta)12 = hkl1 dot g* dot hkl2 / gh1 * gh2
   Parameters:
-    h1 - plane 1
+    hkl1 - plane 1
     g_star - reciprocal metric tensor
-    h2 - plane 2
+    hkl2 - plane 2
   Returns:
     plane angle (in degrees)
   '''
-  nu = h1 @ g_star @ h2
-  de = plane_vector_length(h1, g_star) * plane_vector_length(h2, g_star)
-  cos_theta = nu / de
+  numerator = hkl1 @ g_star @ hkl2
+  denominator = plane_vector_length(hkl1, g_star) * plane_vector_length(hkl2, g_star)
+  cos_theta = numerator / denominator
 
   # safety for floating point precision
   cos_theta = max(-1.0, min(1.0, cos_theta))
