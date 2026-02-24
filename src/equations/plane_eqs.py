@@ -35,7 +35,7 @@ def plane_vector_length(hkl: tuple[int, int, int], g_star: np.array) -> float:
   plane = np.asarray(hkl, dtype=float)
   return float(np.sqrt(plane @ g_star @ plane)) # @ represents dot product (Python 3.5+)
 
-def two_shortest_planes(planes: tuple[int, int, int], c: Lattice):
+def two_shortest_planes(planes: list[tuple[int, int, int]], c: Lattice):
   g_star = reciprocal_metric_tensor(c)
   sorted_planes = sorted(planes, key=lambda hkl: plane_vector_length(hkl, g_star))
   
