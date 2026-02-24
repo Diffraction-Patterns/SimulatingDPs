@@ -11,23 +11,37 @@ class TestCrystalInput(TestCase):
         self.assertIsNone(actual)
 
     def test_valid_input(self, mocked_input):
-        mocked_input.side_effect = [
-            '1',  # x 
-            '2',  # y
-            '3'   # z
-            ]
+        mocked_input.side_effect = ['110']
         actual = prompt_zone_axis_direction()
-        expected = ZoneAxis(1, 2, 3)
+        expected = ZoneAxis(1, 1, 0)
         self.assertEqual(actual, expected)
 
     def test_invalid_input(self, mocked_input):
         mocked_input.side_effect = [
-            '1.852', # invalid x 
-            '1', # valid x
-            '2', # valid y
-            'bad gam', # invalid z
-            '3', # valid z
+            '-12', # invalid
+            '1.852', # invalid
+            '1111', # invalid 
+            'bad gam', # invalid 
+            '123', # valid
             ]
         actual = prompt_zone_axis_direction()
         expected = ZoneAxis(1, 2, 3)
+        self.assertEqual(actual, expected)
+    
+    def test_space_input(self, mocked_input):
+        mocked_input.side_effect = ['1 2 3']
+        actual = prompt_zone_axis_direction()
+        expected = ZoneAxis(1, 2, 3)
+        self.assertEqual(actual, expected)
+
+    def test_space_input(self, mocked_input):
+        mocked_input.side_effect = ['1, 2, 3']
+        actual = prompt_zone_axis_direction()
+        expected = ZoneAxis(1, 2, 3)
+        self.assertEqual(actual, expected)
+
+    def test_negative_input(self, mocked_input):
+        mocked_input.side_effect = ['1-23', '1,-2,3']
+        actual = prompt_zone_axis_direction()
+        expected = ZoneAxis(1, -2, 3)
         self.assertEqual(actual, expected)
