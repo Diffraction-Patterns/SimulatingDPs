@@ -33,8 +33,8 @@ class TestPlaneEqs(TestCase):
     actual_1, actual_2 = eq.two_shortest_planes(test_planes, test_lattice)
     expected_1 = (0, 0, -1)
     expected_2 = (-1, 1, 0)
-    self.assertEqual(actual_1, expected_1)
-    self.assertEqual(actual_2, expected_2)
+    np.testing.assert_array_equal(actual_1, expected_1)
+    np.testing.assert_array_equal(actual_2, expected_2)
 
   def test_plane_angle(self):
     '''
