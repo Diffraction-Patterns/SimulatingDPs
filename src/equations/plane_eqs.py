@@ -4,7 +4,7 @@ from models.zone_axis import ZoneAxis
 from models.lattice import Lattice
 from equations.lattice_eqs import reciprocal_metric_tensor
 
-def planes_identification(zad: ZoneAxis, maxRange: int = 10) -> list[np.array]:
+def planes_identification(zad: ZoneAxis, maxRange: int = 5) -> list[np.array]:
   '''
   Computes the zone axis planes using the equation:
     hx + ky + Lz = 0
