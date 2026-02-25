@@ -58,7 +58,7 @@ def two_shortest_planes(planes: list[np.array], c: Lattice):
 def plane_angles(hkl_1: np.array, hkl_2: np.array, g_star: np.array) -> float:
   '''
   Calculates the angle between planes using the equation:
-    cos(theta)12 = hkl1 dot g* dot hkl2 / gh1 * gh2
+    cos(theta)12 = (hkl1 dot g* dot hkl2) / (gh1 * gh2)
   Parameters:
     hkl1 - plane 1
     g_star - reciprocal metric tensor
