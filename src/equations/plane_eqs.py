@@ -23,7 +23,7 @@ def planes_identification(zad: ZoneAxis, maxRange: int = 5) -> list[np.array]:
           plane_directions.append(np.array([h, k, l]))
   return plane_directions
 
-def plane_vector_length(hkl: np.array, g_star: np.array) -> float:
+def plane_vector_magnitude(hkl: np.array, g_star: np.array) -> float:
   '''
   Calculates the magnitude of the given plane vector
   Parameters:
@@ -42,7 +42,7 @@ def two_shortest_planes(planes: list[np.array], c: Lattice):
     c: Lattice
   '''
   g_star = reciprocal_metric_tensor(c)
-  sorted_planes = sorted(planes, key=lambda hkl: plane_vector_length(hkl, g_star))
+  sorted_planes = sorted(planes, key=lambda hkl: plane_vector_magnitude(hkl, g_star))
   
   # Filter out duplicate planes (i.e. (0,0,1) and (0,0,-1))
   pl1 = sorted_planes[0]
@@ -67,7 +67,7 @@ def plane_angles(hkl_1: np.array, hkl_2: np.array, g_star: np.array) -> float:
     plane angle (in degrees)
   '''
   numerator = hkl_1 @ g_star @ hkl_2
-  denominator = plane_vector_length(hkl_1, g_star) * plane_vector_length(hkl_2, g_star)
+  denominator = plane_vector_magnitude(hkl_1, g_star) * plane_vector_magnitude(hkl_2, g_star)
   cos_theta = numerator / denominator
 
   # safety for floating point precision

@@ -19,7 +19,7 @@ class TestPlaneEqs(TestCase):
     '''
     test_plane = (0, 0, 1)
     test_lattice = Lattice(3.852, 3.852, 3.723, 90.0, 90.0, 90.0)
-    actual = eq.plane_vector_length(test_plane, eq.reciprocal_metric_tensor(test_lattice))
+    actual = eq.plane_vector_magnitude(test_plane, eq.reciprocal_metric_tensor(test_lattice))
     expected = 0.268601
     np.testing.assert_allclose(actual, expected, rtol=1e-5)
 
