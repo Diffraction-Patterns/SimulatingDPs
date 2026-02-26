@@ -5,30 +5,35 @@ from models.zone_axis import ZoneAxis
 import equations.lattice_eqs as l_eqs
 import equations.plane_eqs as p_eqs
 
-def diffraction_pattern_plot (lattice: Lattice, zone_axis: ZoneAxis):
+def diffraction_pattern_plot (lattice: Lattice, zone_axis: ZoneAxis, maxRange: int = 5):
 
   # calculates plane data
-  planes = p_eqs.planes_identification(zone_axis)
-  smallest_1, smallest_2 = p_eqs.two_shortest_planes(planes, lattice)
+  g_star = l_eqs.reciprocal_metric_tensor(lattice)
+  planes = p_eqs.planes_identification(zone_axis, maxRange)
+  s1, s2 = p_eqs.two_shortest_planes(planes, lattice)
   
-  planes_filtered = np.stack(
-    [smallest_1, smallest_2]
-    + [p for p in planes
-     if not (np.array_equal(p, smallest_1)) or (np.array_equal(p, smallest_2))]
-     )
+  # calculate two smallest magnitudes 
+  g1 = p_eqs.plane_vector_magnitude(s1, g_star)
+  g2 = p_eqs.plane_vector_magnitude(s2, g_star)
 
+  p1 = np.array([0, g1])
+  p2 = np.array([g2, 0])
+  
+  points = []
+  for i in range(-maxRange, maxRange):
+    for j in range(-maxRange, maxRange):
+      points.append(i*p1 + j*p2)
+  points = np.asarray(points)
+  
   # plot planes (3D scatter)
-  fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
-  
-  ax.scatter(0, 0, 0, color='black', s=5)
-  ax.text(0, 0, 0, '000', fontsize=5)
+  fig, ax = plt.subplots()
+  ax.scatter(points[:, 0], points[:, 1], color='black', s=5)
+  ax.text(0, 0, '(000)', fontsize=5)
 
-  for h, k, l in planes_filtered:
-    ax.scatter([h], [k], [l], color='black', s=5)
-    ax.text(h, k, l, f'{h}{k}{l}', fontsize=5)
+  for n in points:
+    ax.scatter(n[0], n[1], color='black', s=5)
 
 
   ax.set_axis_off()
-  ax.view_init(elev=0, azim=0)
   
   plt.show()
