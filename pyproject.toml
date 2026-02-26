@@ -5,6 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "SimulatingDPs"
 version = "0.0.1"
+authors = [
+    {name = "Vinci Wu"},
+    {name = "Katherine Lee"},
+]
 description = "diffraction patterns simulation program"
 readme = "README.md"
 license = "MIT"
