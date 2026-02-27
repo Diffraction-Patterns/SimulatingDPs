@@ -2,8 +2,8 @@ from models.lattice import Lattice
 import numpy as np
 from math import cos, sin, radians
 
-def f_constant (x: float, y: float, z: float) -> float:
-  return round((cos(radians(x)) * cos(radians(y))) - cos(radians(z)), 2)
+def f_constant (alpha: float, beta: float, gamma: float) -> float:
+  return round((cos(radians(alpha)) * cos(radians(beta))) - cos(radians(gamma)), 2)
 
 def unit_cell_volume_sq (c: Lattice) -> float:
   '''
