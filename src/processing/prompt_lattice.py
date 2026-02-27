@@ -1,3 +1,4 @@
+from processing.prompt_exit import exit_prompt
 from models.lattice import Lattice
 
 def prompt_lattice() -> Lattice:
@@ -11,7 +12,6 @@ def prompt_lattice() -> Lattice:
     Lattice An object populated with inputted parameters
   '''
   params = ['a', 'b', 'c', 'alpha', 'beta', 'gamma']
-  rp_space_key = 'reciprocal_space'
   print('Type "exit" to quit') 
 
   while True:
@@ -21,9 +21,7 @@ def prompt_lattice() -> Lattice:
       while True:
         raw_input = input(f'{idx}. Enter value for [{p}]: ').strip()
 
-        if raw_input.lower() == 'exit':
-          print("Exiting parameter input...")
-          return None
+        exit_prompt(raw_input)
         
         try:
           value_inputs[p] = float(raw_input)
@@ -31,22 +29,6 @@ def prompt_lattice() -> Lattice:
         except ValueError:
           print('Please enter a valid number.\n')
 
-    ''' (NOT IN USE. may be used for future purposes)
-    while True:
-      raw_input = input('Reciprocal space [y/n]: ').strip().lower() 
-
-      if raw_input == 'exit':
-        print("Exiting parameter input...")
-        return None
-      
-      if raw_input in ('y', 'n'):
-        if raw_input == 'y':
-          print('Set reciprocal space...')
-          value_inputs[rp_space_key] = True
-        break
-      else:
-        print('Please enter only [y]es or [n]o.')
-    '''
     try:
       return Lattice(**value_inputs)
     except ValueError as e:
