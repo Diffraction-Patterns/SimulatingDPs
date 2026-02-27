@@ -1,4 +1,6 @@
-def validate_p_option(option: str, n_options: int) -> bool:
+from eq_options import options
+
+def validate_p_option(option: str, n_options: int = 2) -> bool:
   '''
   Validates user input for parent option 1. Lattice 2. Zone Axis Direction
   Parameters:
@@ -9,7 +11,7 @@ def validate_p_option(option: str, n_options: int) -> bool:
   '''
   if option.isdigit():
     op = int(option)
-    return op > 0 and op <= n_options
+    return 1 <= op and op <= n_options
   return False
 
 def validate_c_option(option: str) -> bool:
@@ -22,17 +24,45 @@ def validate_c_option(option: str) -> bool:
   '''
   return len(option) == 1 and str.isalpha(option)
   
-# def prompt_option():
-#   while True:
-    #raw_input = input(f'{idx}. Enter value for [{p}]: ').strip()
+def prompt_options():
+  while True:
+    # parent option
+    for op, op_desc in options.items():
+      print(f'{op}. {op_desc['label']}')
 
-        # if raw_input.lower() == 'exit':
-        #   print("Exiting parameter input...")
-        #   return None
-        
-        # try:
-        #   value_inputs[p] = float(raw_input)
-        #   break
-        # except ValueError:
-        #   print('Please enter a valid number.\n')
-    
+    raw_input = input('Enter option (or "exit"): ').strip()
+  
+    if raw_input.lower() == 'exit':
+      print("Exiting parameter input...")
+      return None
+      
+    if not validate_p_option(raw_input):
+      print('Please enter a valid option')
+      continue
+    p_op = int(raw_input)
+    parent = options[p_op]
+
+    # child option
+    print(f"\nSelected: {parent['label']}")
+    print("Choose an operation:")
+
+    for func_op, func_name in parent['children'].items():
+      print(f'{func_op}. {func_name}')
+
+    raw_child = input('Enter sub-option (or "exit"): ').strip()
+
+    if raw_child.lower() == 'exit':
+      print("Exiting parameter input...")
+      return None
+      
+    if not validate_c_option(raw_child):
+      print('Please enter a valid option')
+      continue
+
+    if raw_child not in parent['children']:
+      print('Invalid option.')
+      continue
+
+    c_op = raw_child
+
+    return p_op, c_op
