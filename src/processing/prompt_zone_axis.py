@@ -13,7 +13,7 @@ def prompt_zone_axis_direction() -> ZoneAxis:
   params = ['x', 'y', 'z']
   while True:
     value_inputs = {}
-    print('\nEnter the zone axis direction as 3 integers (i.e. 1 2 3 for [1 2 3]: ')
+    print('\nEnter the zone axis direction as 3 integers (i.e. 123 for (1 2 3): ')
     raw_input = input().strip()
 
     if raw_input.lower() == 'exit':
