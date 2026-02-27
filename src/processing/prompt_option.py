@@ -31,36 +31,40 @@ def prompt_options():
     for op, op_desc in options.items():
       print(f'{op}. {op_desc['label']}')
 
-    raw_input = input('Enter option (or "exit"): ').strip()
-  
-    exit_prompt(raw_input)
-      
-    if not validate_p_option(raw_input):
-      print('Please enter a valid option')
-      continue
+    while True:
+      raw_input = input('Enter option (or "exit"): ').strip()
+    
+      if exit_prompt(raw_input):
+        return None
+        
+      if not validate_p_option(raw_input):
+        print('Please enter a valid option')
+        continue
 
-    p_op = int(raw_input)
-    parent = options[p_op]
+      p_op = int(raw_input)
+      parent = options[p_op]
 
-    # child option
-    print(f"\nSelected: {parent['label']}")
-    print("Choose an operation:")
+      while True:
+        # child option
+        print(f"\nSelected: {parent['label']}")
+        print("Choose an operation:")
 
-    for func_op, func_name in parent['children'].items():
-      print(f'{func_op}. {func_name}')
+        for func_op, func_name in parent['children'].items():
+          print(f'{func_op}. {func_name}')
 
-    raw_child = input('Enter sub-option (or "exit"): ').strip()
+        raw_child = input('Enter sub-option (or "exit"): ').strip()
 
-    exit_prompt(raw_child)
-      
-    if not validate_c_option(raw_child):
-      print('Please enter a valid option')
-      continue
+        if exit_prompt(raw_child):
+          return None
+          
+        if not validate_c_option(raw_child):
+          print('Please enter a valid option')
+          continue
 
-    if raw_child not in parent['children']:
-      print('Invalid option.')
-      continue
+        if raw_child not in parent['children']:
+          print('Invalid option.')
+          continue
 
-    c_op = raw_child
-
-    return p_op, c_op
+        c_op = raw_child
+        
+        return p_op, c_op

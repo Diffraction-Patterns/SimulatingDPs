@@ -1,3 +1,2 @@
-def exit_prompt (s: str):
-  if s.lower() == 'exit':
-    return None
+def exit_prompt (s: str) -> bool:
+  return s.lower() == 'exit'

@@ -17,7 +17,8 @@ def prompt_zone_axis_direction() -> ZoneAxis:
     print('\nEnter the zone axis direction as 3 integers (i.e. 123 for (1 2 3): ')
     raw_input = input().strip()
 
-    exit_prompt(raw_input)
+    if exit_prompt(raw_input):
+        return None
 
     # account for valid inputs without space or commas (i.e. )    
     if raw_input.isdigit() and len(raw_input) == 3:

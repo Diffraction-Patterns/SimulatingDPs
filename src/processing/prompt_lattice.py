@@ -21,7 +21,8 @@ def prompt_lattice() -> Lattice:
       while True:
         raw_input = input(f'{idx}. Enter value for [{p}]: ').strip()
 
-        exit_prompt(raw_input)
+        if exit_prompt(raw_input):
+          return None
         
         try:
           value_inputs[p] = float(raw_input)
