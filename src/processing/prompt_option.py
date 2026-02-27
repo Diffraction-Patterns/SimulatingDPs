@@ -7,6 +7,10 @@ def validate_p_option(option: str, n_options: int) -> bool:
   Returns:
     true if input is int
   '''
+  if option.isdigit():
+    op = int(option)
+    return op > 0 and op <= n_options
+  return False
 
 def validate_c_option(option: str) -> bool:
   '''
