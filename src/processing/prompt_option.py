@@ -18,8 +18,8 @@ def validate_c_option(option: str) -> bool:
   '''
   return len(option) == 1 and str.isalpha(option)
   
-def prompt_option():
-  while True:
+# def prompt_option():
+#   while True:
     #raw_input = input(f'{idx}. Enter value for [{p}]: ').strip()
 
         # if raw_input.lower() == 'exit':
@@ -31,3 +31,4 @@ def prompt_option():
         #   break
         # except ValueError:
         #   print('Please enter a valid number.\n')
+    
