@@ -26,6 +26,7 @@ def validate_c_option(option: str) -> bool:
   return len(option) == 1 and str.isalpha(option)
   
 def prompt_options():
+  print("\n| === Equation Set Selection === |")
   while True:
     # parent option
     for op, op_desc in options.items():
