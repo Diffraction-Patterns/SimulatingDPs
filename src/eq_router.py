@@ -12,6 +12,15 @@ from equations.plane_eqs import (
     plane_angles,
 )
 
+# Storage area for user inputted parameters
+parameters = {
+  "lattice": None,
+  "zone_axis_direction": None,
+  "maxRange": 5,
+  "hkl": None,
+  "g_star": None
+}
+
 equation_map = {
     "f_constant": f_constant,
     "unit_cell_volume_sq": unit_cell_volume_sq,
