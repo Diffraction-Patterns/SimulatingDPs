@@ -61,7 +61,7 @@ To run the program, our entry point will be in the src\simulation directory (our
 pip install -e .
 
 # In the root directory, run the command:
-python -m simulation
+python -m diffraction_patterns
 ```
 
 ## Developing

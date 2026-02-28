@@ -7,7 +7,7 @@
 
 ## Running program
 ```bash
-python -m simulation
+python -m diffraction_patterns
 ```
 
 ## Running tests
