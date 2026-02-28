@@ -1,6 +1,6 @@
 import shlex
 import sys
-from eq_router import parameters
+from params import (parameters, get_param, set_param)
 from processing.prompt_lattice import prompt_lattice
 from processing.prompt_zone_axis import prompt_zone_axis_direction
 import equations.plane_eqs as eq
@@ -13,10 +13,10 @@ def main() -> int:
     simTitle()
     try:
       print('\n| === Lattice Parameters ===|')
-      parameters["lattice"] = prompt_lattice()
+      set_param("lattice", prompt_lattice())
 
       print('\n| === Zone Axis Direction ===|')
-      parameters["zone_axis_direction"] = prompt_zone_axis_direction()
+      set_param("zone_axis_direction", prompt_zone_axis_direction())
 
       print(parameters["lattice"])
       print(parameters["zone_axis_direction"])
