@@ -1,8 +1,6 @@
 import sys
 from params import (parameters, get_param, set_param)
-from processing.prompt_lattice import prompt_lattice
-from processing.prompt_zone_axis import prompt_zone_axis_direction
-from processing.prompt_option import prompt_options
+from processing import (prompt_lattice, prompt_zone_axis_direction, prompt_options)
 from eq_selection.eq_selector import equation_selection
 import plot.dp_plotting as spl
 
