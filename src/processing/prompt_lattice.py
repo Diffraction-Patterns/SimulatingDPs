@@ -1,4 +1,4 @@
-from processing.prompt_exit import exit_prompt
+from processing.prompt_exit import run_exit
 from models.lattice import Lattice
 
 def prompt_lattice() -> Lattice:
@@ -21,8 +21,7 @@ def prompt_lattice() -> Lattice:
       while True:
         raw_input = input(f'{idx}. Enter value for [{p}]: ').strip()
 
-        if exit_prompt(raw_input):
-          return None
+        run_exit(raw_input)
         
         try:
           value_inputs[p] = float(raw_input)

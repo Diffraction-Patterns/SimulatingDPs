@@ -8,9 +8,8 @@ from processing import *
 
 def execute_f_constant ():
   choice = input('New alpha, beta, and gamma? [y/n]: ').strip()
-  if exit_prompt(choice):
-    return None
-  elif choice.lower() == 'y':
+  run_exit(choice)
+  if choice.lower() == 'y':
     a, b, c = prompt_abc()
     return l_eq.f_constant(a, b, c)
   elif choice.lower() == 'n':

@@ -1,4 +1,4 @@
-from processing.prompt_exit import exit_prompt
+from processing.prompt_exit import run_exit
 from eq_options import options
 
 def validate_p_option(option: str, n_options: int = 2) -> bool:
@@ -35,8 +35,7 @@ def prompt_options():
     while True:
       raw_input = input('Enter option (or "exit"): ').strip()
     
-      if exit_prompt(raw_input):
-        return None
+      run_exit(raw_input)
         
       if not validate_p_option(raw_input):
         print('Please enter a valid option')
@@ -55,8 +54,7 @@ def prompt_options():
 
         raw_child = input('Enter sub-option (or "exit"): ').strip()
 
-        if exit_prompt(raw_child):
-          return None
+        run_exit(raw_child)
           
         if not validate_c_option(raw_child):
           print('Please enter a valid option')

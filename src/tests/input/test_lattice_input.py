@@ -7,8 +7,8 @@ from models.lattice import Lattice
 class TestCrystalInput(TestCase):
     def test_exit(self, mocked_input):
         mocked_input.side_effect = ['3.287', 'Exit']
-        actual = prompt_lattice()
-        self.assertIsNone(actual)
+        with self.assertRaises(SystemExit):
+            prompt_lattice()
 
     def test_valid_input(self, mocked_input):
         mocked_input.side_effect = [

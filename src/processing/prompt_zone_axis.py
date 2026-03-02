@@ -1,4 +1,4 @@
-from processing.prompt_exit import exit_prompt
+from processing.prompt_exit import run_exit
 from models.zone_axis import ZoneAxis 
 
 def prompt_zone_axis_direction() -> ZoneAxis:
@@ -17,8 +17,7 @@ def prompt_zone_axis_direction() -> ZoneAxis:
     print('Enter the zone axis direction as 3 integers (i.e. 123 for (1 2 3): ')
     raw_input = input().strip()
 
-    if exit_prompt(raw_input):
-        return None
+    run_exit(raw_input)
 
     # account for valid inputs without space or commas (i.e. )    
     if raw_input.isdigit() and len(raw_input) == 3:

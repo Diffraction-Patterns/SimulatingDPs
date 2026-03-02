@@ -7,8 +7,8 @@ from models.zone_axis import ZoneAxis
 class TestCrystalInput(TestCase):
     def test_exit(self, mocked_input):
         mocked_input.side_effect = ['1', 'Exit']
-        actual = prompt_zone_axis_direction()
-        self.assertIsNone(actual)
+        with self.assertRaises(SystemExit):
+            prompt_zone_axis_direction()
 
     def test_valid_input(self, mocked_input):
         mocked_input.side_effect = ['110']
