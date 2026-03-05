@@ -7,10 +7,10 @@ This project is dedicated to assisting with diffraction patterns
 
 ## Current state
 At its current implementation, given an input of:
-- Lattice (a, b, c, alpha, beta, gamma)
-- Zone Axis Direction (i.e. 101 format) 
+1. Lattice (a, b, c, alpha, beta, gamma)
+2. Zone Axis Direction (i.e., 101 format) 
 
 It will output the calculations of:
 - the two smallest planes
-- their magnitudes
-- the angle between
+- two smallest plane magnitudes
+- the angle between the two smallest planes
