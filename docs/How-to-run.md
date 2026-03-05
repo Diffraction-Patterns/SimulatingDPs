@@ -17,7 +17,4 @@ python -m nose2
 
 # Run individual test
 python -m unittest <Test file path>
-
-# Example
-python -m unittest .\src\tests\test_plane_eqs.py   
 ```
